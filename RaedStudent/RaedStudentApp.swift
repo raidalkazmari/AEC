@@ -97,7 +97,8 @@ struct LoginView: View {
 
                     VStack(spacing: 8) {
                         Text("تم تصميم هذا التطبيق بشكل فردي ولا يمثل كليات الشرق العربي").multilineTextAlignment(.center)
-                        Link("info@abofahad.net", destination: URL(string: "mailto:info@abofahad.net")!).fontWeight(.bold)
+                        Link("info@abofahad.net", destination: URL(string: "mailto:info@abofahad.net")!)
+                            .font(.system(size: 14, weight: .bold))
                     }
                     .font(.caption).foregroundColor(.white.opacity(0.72))
                     Spacer(minLength: 28)

@@ -296,29 +296,68 @@ struct ChangePINView: View {
 
     var body: some View {
         Form {
-            Section(header: Text("الرقم السري"), footer: Text("استخدم من 1 إلى 8 أرقام.")) {
-                SecureField("الرقم السري الحالي", text: $currentPIN).keyboardType(.numberPad)
-                SecureField("الرقم السري الجديد", text: $newPIN).keyboardType(.numberPad)
-                SecureField("تأكيد الرقم السري", text: $confirmPIN).keyboardType(.numberPad)
-            }
-            if let message { Section { Text(message).foregroundColor(message.contains("تم") ? AppTheme.success : .red) } }
+            pinFieldsSection
+            messageSection
         }
         .navigationTitle("تغيير الرقم السري")
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) { Button("إلغاء") { presentationMode.wrappedValue.dismiss() } }
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button("إلغاء") {
+                    presentationMode.wrappedValue.dismiss()
+                }
+            }
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button("حفظ") {
-                    guard newPIN == confirmPIN else { message = "تأكيد الرقم السري غير مطابق"; return }
-                    if store.updatePIN(current: currentPIN, newPIN: newPIN) {
-                        message = "تم تغيير الرقم السري"
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) { presentationMode.wrappedValue.dismiss() }
-                    } else { message = "تحقق من الرقم الحالي وأن الجديد من 1 إلى 8 أرقام" }
-                }.disabled(newPIN.isEmpty || confirmPIN.isEmpty)
+                Button("حفظ", action: savePIN)
+                    .disabled(newPIN.isEmpty || confirmPIN.isEmpty)
             }
         }
         .keyboardDismissOnTapAndDrag()
-        .onChange(of: currentPIN) { currentPIN = String($0.filter { $0.isNumber }.prefix(8)) }
-        .onChange(of: newPIN) { newPIN = String($0.filter { $0.isNumber }.prefix(8)) }
-        .onChange(of: confirmPIN) { confirmPIN = String($0.filter { $0.isNumber }.prefix(8)) }
+        .onChange(of: currentPIN) { currentPIN = digitsOnly($0) }
+        .onChange(of: newPIN) { newPIN = digitsOnly($0) }
+        .onChange(of: confirmPIN) { confirmPIN = digitsOnly($0) }
+    }
+
+    private var pinFieldsSection: some View {
+        Section(
+            header: Text("الرقم السري"),
+            footer: Text("استخدم من 1 إلى 8 أرقام.")
+        ) {
+            SecureField("الرقم السري الحالي", text: $currentPIN)
+                .keyboardType(.numberPad)
+            SecureField("الرقم السري الجديد", text: $newPIN)
+                .keyboardType(.numberPad)
+            SecureField("تأكيد الرقم السري", text: $confirmPIN)
+                .keyboardType(.numberPad)
+        }
+    }
+
+    @ViewBuilder
+    private var messageSection: some View {
+        if let message = message {
+            Section {
+                Text(message)
+                    .foregroundColor(message.contains("تم") ? AppTheme.success : .red)
+            }
+        }
+    }
+
+    private func digitsOnly(_ value: String) -> String {
+        String(value.filter { $0.isNumber }.prefix(8))
+    }
+
+    private func savePIN() {
+        guard newPIN == confirmPIN else {
+            message = "تأكيد الرقم السري غير مطابق"
+            return
+        }
+
+        if store.updatePIN(current: currentPIN, newPIN: newPIN) {
+            message = "تم تغيير الرقم السري"
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                presentationMode.wrappedValue.dismiss()
+            }
+        } else {
+            message = "تحقق من الرقم الحالي وأن الجديد من 1 إلى 8 أرقام"
+        }
     }
 }
