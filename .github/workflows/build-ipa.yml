@@ -1,0 +1,45 @@
+name: Build TrollStore IPA - iOS 14.3
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-15
+
+    steps:
+      - name: Download project
+        uses: actions/checkout@v4
+
+      - name: Install ldid
+        run: brew install ldid
+
+      - name: Build unsigned app
+        run: |
+          xcodebuild \
+            -project RaedStudent.xcodeproj \
+            -scheme RaedStudent \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY=""
+
+      - name: Package TrollStore IPA
+        run: |
+          APP_PATH=$(find build/Build/Products/Release-iphoneos -type d -name "*.app" -print -quit)
+          EXECUTABLE_NAME=$(/usr/libexec/PlistBuddy -c "Print :CFBundleExecutable" "$APP_PATH/Info.plist")
+          ldid -S "$APP_PATH/$EXECUTABLE_NAME"
+          mkdir Payload
+          cp -R "$APP_PATH" Payload/
+          zip -qry RaedStudent-TrollStore-iOS14.3.ipa Payload
+
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: RaedStudent-TrollStore-iOS14.3
+          path: RaedStudent-TrollStore-iOS14.3.ipa
