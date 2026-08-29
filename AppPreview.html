@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>طلاب AEC — معاينة</title>
+<style>
+  *{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 15% 15%,#155eef,#173aa7 48%,#08142e);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;color:#111827;min-height:100vh;overflow:hidden}
+  .canvas{height:900px;display:flex;align-items:center;justify-content:center;gap:70px;padding:40px;position:relative}
+  .brand{position:absolute;left:58px;top:58px;color:#fff;text-align:left;direction:ltr}.brand b{font-size:36px;letter-spacing:-1px}.brand span{display:block;color:#d7b45a;font-weight:800;letter-spacing:5px;font-size:12px;margin-top:6px}
+  .phone{width:360px;height:760px;background:#f7f3e9;border:10px solid #111;border-radius:54px;box-shadow:0 34px 75px #0008;overflow:hidden;position:relative}
+  .island{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:114px;height:31px;background:#050505;border-radius:22px;z-index:8}
+  .status{height:52px;background:#155eef;color:white;padding:17px 20px 0;font-size:12px;font-weight:700;display:flex;justify-content:space-between;direction:ltr}
+  .header{background:#155eef;color:white;padding:8px 18px 18px;border-radius:0 0 24px 24px;display:flex;gap:12px;align-items:center}.logo{width:50px;height:50px;background:#08142e;border:2px solid #21c6f3;border-radius:15px;display:grid;place-items:center;color:white;font-weight:950;font-size:15px;position:relative}.logo:before{content:"🎓";position:absolute;top:-10px;font-size:17px}.hello b{display:block;font-size:18px}.hello small{opacity:.76;font-size:10px}
+  .content{height:627px;overflow:hidden;padding:14px}.card{background:#fff;border:1px solid #b99a4d30;border-radius:18px;padding:13px;margin-bottom:11px;box-shadow:0 5px 14px #0a363b0c}.progress{display:flex;align-items:center;gap:18px}.ring{width:96px;height:96px;border-radius:50%;background:conic-gradient(#007b8d 0 61%,#b99a4d 61% 64%,#dce6e5 64%);display:grid;place-items:center;position:relative}.ring:after{content:"61%\A من الخطة";white-space:pre;text-align:center;display:grid;place-items:center;background:#fff;width:68px;height:68px;border-radius:50%;font-weight:900;font-size:18px;line-height:17px}.ring:after{color:#064b59}.ptext b{font-size:14px}.ptext div{font-size:11px;margin-top:7px}.ptext .blue{color:#3f7c9b}.ptext .gold{color:#9a7b2b}.ptext .green{color:#006a66;font-weight:800}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.stat{padding:11px;border-radius:14px;background:#e8f3f2}.stat.gold{background:#f5edd8}.stat.blue{background:#e4edf3}.stat.orange{background:#f7e9de}.stat i{font-style:normal;font-size:18px}.stat b{display:block;font-size:19px;margin:5px 0 2px}.stat small{color:#66777a;font-size:9px}
+  .title{font-size:13px;font-weight:900;margin-bottom:9px}.course{display:flex;gap:9px;align-items:center;padding:7px 0;border-top:1px solid #eee}.bar{width:6px;height:37px;border-radius:4px;background:#e7c94e}.course b{font-size:11px;display:block}.course small{font-size:9px;color:#758083}.pill{margin-right:auto;background:#e7c94e3d;border-radius:12px;padding:4px 7px;font-size:8px;font-weight:800}
+  .tabs{position:absolute;bottom:0;left:0;right:0;height:66px;background:#fff;display:flex;justify-content:space-around;padding-top:10px;box-shadow:0 -5px 20px #0000000c;color:#718083;font-size:9px;text-align:center}.tabs b{display:block;font-size:17px;margin-bottom:3px}.tabs .active{color:#007b8d}
+  .coursehead{background:#007b8d;color:#fff;padding:16px 17px 20px;border-radius:0 0 24px 24px}.coursehead .code{display:inline-block;background:#e7c94e;color:#17343a;padding:4px 9px;border-radius:12px;font-size:9px;font-weight:900}.coursehead h2{font-size:20px;margin:12px 0 7px}.coursehead p{font-size:10px;opacity:.8;margin:4px 0}.notearea{background:#f4f4f4;border-radius:13px;height:105px;padding:12px;color:#a2a9a9;font-size:11px}.actions{display:flex;gap:7px;margin:10px 0}.action{flex:1;background:#eef3f2;border-radius:10px;padding:9px 4px;font-size:9px;text-align:center;font-weight:800}.save{background:#007b8d;color:#fff;text-align:center;border-radius:12px;padding:11px;font-weight:900;font-size:11px}.savednote{border-right:5px solid #3f7c9b}.savednote time{color:#879191;font-size:9px}.savednote p{font-size:11px;line-height:1.7;margin-bottom:8px}.audio{display:inline-block;background:#007b8d18;color:#007b8d;border-radius:10px;padding:8px;font-size:9px;font-weight:800}
+  .glow{position:absolute;width:430px;height:430px;border-radius:50%;background:#d7b45a18;filter:blur(15px);right:30px;bottom:-120px}
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="brand"><b>طلاب AEC</b><span>AEC STUDENTS</span></div><div class="glow"></div>
+  <div class="phone">
+    <div class="island"></div><div class="status"><span>9:41</span><span>●●● 5G ︎▰</span></div>
+    <div class="header"><div class="logo">AEC</div><div class="hello"><b>أهلًا رائد 👋</b><small>تقنية المعلومات — مسار الأمن السيبراني</small></div></div>
+    <div class="content">
+      <div class="card progress"><div class="ring"></div><div class="ptext"><b>تقدمك الأكاديمي</b><div class="blue">✓ 81 ساعة مجتازة</div><div class="gold">● 18 ساعة حالية</div><div class="green">بعد الفصل: يتبقى 33 ساعة</div></div></div>
+      <div class="grid"><div class="stat"><i>📈</i><b>2.75</b><small>المعدل التراكمي</small></div><div class="stat gold"><i>⌛</i><b>51</b><small>المتبقي رسميًا</small></div><div class="stat blue"><i>📚</i><b>6</b><small>مواد الفصل</small></div><div class="stat orange"><i>💳</i><b>20,700</b><small>المتبقي ماليًا</small></div></div>
+      <div class="card" style="margin-top:11px"><div class="title">مواد الفصل الحالي</div><div class="course"><span class="bar"></span><div><b>التشفير التطبيقي</b><small>أمن 301 • 3 ساعات</small></div><span class="pill">حالي</span></div><div class="course"><span class="bar"></span><div><b>إدارة الشبكات وتصميمها</b><small>عال 311 • 3 ساعات</small></div><span class="pill">حالي</span></div><div class="course"><span class="bar"></span><div><b>التنظيم والبناء المعماري للحاسب</b><small>عال 314 • 3 ساعات</small></div><span class="pill">حالي</span></div></div>
+    </div>
+    <div class="tabs"><div class="active"><b>▦</b>الرئيسية</div><div><b>◈</b>الخطة</div><div><b>▤</b>دراستي</div><div><b>▱</b>المالية</div><div><b>✦</b>المساعد</div></div>
+  </div>
+  <div class="phone">
+    <div class="island"></div><div class="status"><span>9:41</span><span>●●● 5G ︎▰</span></div>
+    <div class="coursehead"><span class="code">أمن 301</span><h2>التشفير التطبيقي</h2><p>الاثنين • 07:00 م – 10:00 م • قاعة 406</p><p>د. أبو بكر</p></div>
+    <div class="content">
+      <div class="card"><div class="title">ملاحظة محاضرة جديدة</div><div class="notearea">اكتب شرح الدكتور، المهام، أو أهم النقاط…</div><div class="actions"><div class="action">📷 تصوير</div><div class="action">▧ صورة</div><div class="action">🎙 تسجيل</div></div><div class="save">حفظ الملاحظة</div></div>
+      <div class="card savednote"><time>27 أغسطس، 8:15 م</time><p><b>المحاضرة الأولى:</b><br>مراجعة مبادئ التشفير المتماثل والفرق بين المفتاح العام والخاص، مع أمثلة على AES.</p><span class="audio">▶ تشغيل التسجيل</span></div>
+      <div class="card savednote"><time>27 أغسطس، 8:42 م</time><p><b>واجب:</b> حل الأسئلة 1–5 وإرفاق مخطط دورة حياة المفتاح.</p><div class="actions"><div class="action">🖼 صورة الشرح</div><div class="action">✦ اسأل الذكاء</div></div></div>
+    </div>
+    <div class="tabs"><div><b>▦</b>الرئيسية</div><div><b>◈</b>الخطة</div><div class="active"><b>▤</b>دراستي</div><div><b>▱</b>المالية</div><div><b>✦</b>المساعد</div></div>
+  </div>
+</div>
+</body>
+</html>

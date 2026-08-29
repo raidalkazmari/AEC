@@ -1,0 +1,18 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#064B59"/><stop offset="0.55" stop-color="#007B8D"/><stop offset="1" stop-color="#0B4C59"/>
+    </linearGradient>
+    <linearGradient id="shield" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E7F3F2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="218" fill="url(#bg)"/>
+  <circle cx="512" cy="512" r="353" fill="#B99A4D" opacity="0.15"/>
+  <path d="M512 150 L810 274 V506 C810 693 695 822 512 884 C329 822 214 693 214 506 V274 Z" fill="url(#shield)" stroke="#B99A4D" stroke-width="26"/>
+  <path d="M319 359 L512 271 L705 359 L512 447 Z" fill="#B99A4D"/>
+  <path d="M374 393 V470 C451 522 575 522 652 470 V393" fill="none" stroke="#B99A4D" stroke-width="28" stroke-linecap="round"/>
+  <text x="512" y="694" text-anchor="middle" font-family="Arial, sans-serif" font-size="248" font-weight="900" fill="#064B59">RA</text>
+  <circle cx="711" cy="739" r="35" fill="#B99A4D"/>
+</svg>
+
